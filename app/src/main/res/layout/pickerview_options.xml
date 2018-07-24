@@ -30,13 +30,13 @@
 
         <com.meitu.qihangni.wheelpickerproject.timewheelpicker.wheelview.WheelView
             android:id="@+id/options1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.7" />
 
         <com.meitu.qihangni.wheelpickerproject.timewheelpicker.wheelview.WheelView
             android:id="@+id/options2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
@@ -48,7 +48,7 @@
 
         <com.meitu.qihangni.wheelpickerproject.timewheelpicker.wheelview.WheelView
             android:id="@+id/options3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
     </LinearLayout>

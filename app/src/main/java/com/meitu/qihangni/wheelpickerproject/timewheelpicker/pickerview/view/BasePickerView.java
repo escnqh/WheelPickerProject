@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -142,9 +145,28 @@ public class BasePickerView {
      * @param view 这个View
      */
     private void onAttached(View view) {
+        //避免被底部导航栏遮住
+        view.setPadding(0, 0, 0, getNavigationBarHeight());
         mPickerOptions.decorView.addView(view);
         if (isAnim) {
             contentContainer.startAnimation(inAnim);
+        }
+    }
+
+
+    /**
+     * @return 系统导航栏的高度
+     */
+    private int getNavigationBarHeight() {
+        boolean hasMenuKey = ViewConfiguration.get(context).hasPermanentMenuKey();
+        boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
+        if (!hasMenuKey && !hasBackKey) {
+            Resources resources = context.getResources();
+            int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+            int height = resources.getDimensionPixelSize(resourceId);
+            return height;
+        } else {
+            return 0;
         }
     }
 

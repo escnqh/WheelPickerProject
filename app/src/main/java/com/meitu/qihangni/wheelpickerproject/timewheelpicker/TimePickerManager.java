@@ -49,7 +49,11 @@ public class TimePickerManager {
         mTimePickerView.show();
     }
 
+    /**
+     * 设置日期list（默认开始位置为今日）
+     */
     private static void setDatelist() {
+        mDatelist.clear();
         mDatelist.add("今日");
         for (int i = 1; i < 7; i++) {
             mDate = new Date(time + i * 86400000);
@@ -58,7 +62,11 @@ public class TimePickerManager {
         }
     }
 
+    /**
+     * 设置小时list，确定初始位置
+     */
     private static void setHourlist() {
+        mHourlist.clear();
         mHourPosition = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         for (int i = 0; i < 24; i++) {
             if (i < 10) {
@@ -69,11 +77,16 @@ public class TimePickerManager {
         }
     }
 
+    /**
+     * 设置分钟list，确定初始位置
+     */
     private static void setMinutelist() {
+        mMinutelist.clear();
         int minute = Calendar.getInstance().get(Calendar.MINUTE);
         mMinutePosition = minute / 5 + 1;
         if (mMinutePosition == 12) {
             mMinutePosition = 0;
+            mHourPosition += 1;
         }
         for (int i = 0; i < 60; i += 5) {
             if (i < 10) {
